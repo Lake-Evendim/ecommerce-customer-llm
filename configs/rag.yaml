@@ -1,0 +1,27 @@
+# RAG 检索阶段配置：不依赖生成模型，只做向量库、检索和 retrieval eval
+
+paths:
+  kb_path: data/knowledge_base/kb_all.jsonl
+  eval_path: data/eval/eval_set.jsonl
+  vector_db_dir: outputs/vector_db
+  faiss_index_path: outputs/vector_db/faiss.index
+  doc_store_path: outputs/vector_db/documents.jsonl
+  retrieval_eval_output: outputs/eval_results/rag_retrieval_eval.jsonl
+  retrieval_summary_output: outputs/eval_results/rag_retrieval_summary.md
+  retrieval_badcase_output: outputs/badcases/rag_retrieval_badcases.jsonl
+
+embedding:
+  # 中文项目推荐先用 bge-small-zh-v1.5，资源占用低，适合先跑通
+  model_name_or_path: BAAI/bge-small-zh-v1.5
+  device: auto
+  batch_size: 32
+  normalize_embeddings: true
+  query_instruction: "为这个句子生成表示以用于检索相关文章："
+
+retrieval:
+  top_k: 5
+  score_threshold: 0.0
+  # 是否在评测时只看 need_rag=true 的样本
+  eval_only_need_rag: true
+  # 是否启用 category 过滤。MVP 先关掉，评测 baseline；后续可打开做消融
+  use_category_filter: false

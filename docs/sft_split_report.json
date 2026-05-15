@@ -1,0 +1,101 @@
+{
+  "config": {
+    "input": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/interim/cleaned_sft.jsonl",
+    "train_output": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/processed/sft_train.jsonl",
+    "valid_output": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/processed/sft_valid.jsonl",
+    "valid_ratio": 0.1,
+    "seed": 42,
+    "split_strategy": "stratified_group_split_by_category_and_seed_id"
+  },
+  "summary": {
+    "raw_items": 998,
+    "valid_format_items": 998,
+    "invalid_items": 0,
+    "total_groups": 100,
+    "train_items": 879,
+    "valid_items": 119,
+    "train_groups": 88,
+    "valid_groups": 12,
+    "actual_valid_item_ratio": 0.1192,
+    "actual_valid_group_ratio": 0.12,
+    "seed_leakage_count": 0
+  },
+  "item_category_distribution": {
+    "all": {
+      "return_refund": 199,
+      "coupon_price": 80,
+      "invoice": 80,
+      "product_info": 149,
+      "logistics": 150,
+      "quality_issue": 150,
+      "complaint": 100,
+      "manual_transfer": 90
+    },
+    "train": {
+      "return_refund": 180,
+      "coupon_price": 70,
+      "invoice": 70,
+      "product_info": 129,
+      "logistics": 130,
+      "quality_issue": 130,
+      "complaint": 90,
+      "manual_transfer": 80
+    },
+    "valid": {
+      "product_info": 20,
+      "quality_issue": 20,
+      "return_refund": 19,
+      "logistics": 20,
+      "complaint": 10,
+      "manual_transfer": 10,
+      "coupon_price": 10,
+      "invoice": 10
+    }
+  },
+  "group_category_distribution": {
+    "all": {
+      "return_refund": 20,
+      "logistics": 15,
+      "product_info": 15,
+      "quality_issue": 15,
+      "invoice": 8,
+      "coupon_price": 8,
+      "complaint": 10,
+      "manual_transfer": 9
+    },
+    "train": {
+      "return_refund": 18,
+      "coupon_price": 7,
+      "invoice": 7,
+      "product_info": 13,
+      "logistics": 13,
+      "quality_issue": 13,
+      "complaint": 9,
+      "manual_transfer": 8
+    },
+    "valid": {
+      "product_info": 2,
+      "quality_issue": 2,
+      "return_refund": 2,
+      "logistics": 2,
+      "complaint": 1,
+      "manual_transfer": 1,
+      "coupon_price": 1,
+      "invoice": 1
+    }
+  },
+  "source_distribution": {
+    "all": {
+      "llm_user_rewrite": 998
+    },
+    "train": {
+      "llm_user_rewrite": 879
+    },
+    "valid": {
+      "llm_user_rewrite": 119
+    }
+  },
+  "seed_leakage": [],
+  "group_category_conflicts": [],
+  "invalid_items": []
+}

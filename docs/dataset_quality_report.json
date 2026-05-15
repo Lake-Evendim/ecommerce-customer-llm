@@ -1,0 +1,361 @@
+{
+  "passed": false,
+  "paths": {
+    "cleaned_sft": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/interim/cleaned_sft.jsonl",
+    "sft_train": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/processed/sft_train.jsonl",
+    "sft_valid": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/processed/sft_valid.jsonl",
+    "eval_set": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/eval/eval_set.jsonl",
+    "dpo_candidates": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/interim/dpo_candidates.jsonl",
+    "dpo_train": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/processed/dpo_train.jsonl",
+    "dpo_valid": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/processed/dpo_valid.jsonl",
+    "kb_all": "/home/amlab/桌面/shenzy/ecommerce-customer-llm/data/knowledge_base/kb_all.jsonl"
+  },
+  "thresholds": {
+    "sft_train_min": 1800,
+    "sft_valid_min": 200,
+    "eval_set_min": 200,
+    "dpo_total_min": 300,
+    "dpo_valid_min": 20,
+    "kb_all_min": 80
+  },
+  "threshold_results": {
+    "sft_train_min": {
+      "actual": 879,
+      "expected_min": 1800,
+      "passed": false
+    },
+    "sft_valid_min": {
+      "actual": 119,
+      "expected_min": 200,
+      "passed": false
+    },
+    "eval_set_min": {
+      "actual": 200,
+      "expected_min": 200,
+      "passed": true
+    },
+    "dpo_total_min": {
+      "actual": 300,
+      "expected_min": 300,
+      "passed": true
+    },
+    "dpo_valid_min": {
+      "actual": 36,
+      "expected_min": 20,
+      "passed": true
+    },
+    "kb_all_min": {
+      "actual": 89,
+      "expected_min": 80,
+      "passed": true
+    }
+  },
+  "datasets": {
+    "cleaned_sft": {
+      "total": 998,
+      "valid_format": 998,
+      "category_distribution": {
+        "return_refund": 199,
+        "logistics": 150,
+        "product_info": 149,
+        "quality_issue": 150,
+        "invoice": 80,
+        "coupon_price": 80,
+        "complaint": 100,
+        "manual_transfer": 90
+      },
+      "source_distribution": {
+        "llm_user_rewrite": 998
+      },
+      "seed_id_count": 100
+    },
+    "sft_train": {
+      "total": 879,
+      "valid_format": 879,
+      "category_distribution": {
+        "return_refund": 180,
+        "coupon_price": 70,
+        "invoice": 70,
+        "product_info": 129,
+        "logistics": 130,
+        "quality_issue": 130,
+        "complaint": 90,
+        "manual_transfer": 80
+      },
+      "source_distribution": {
+        "llm_user_rewrite": 879
+      },
+      "seed_id_count": 88
+    },
+    "sft_valid": {
+      "total": 119,
+      "valid_format": 119,
+      "category_distribution": {
+        "product_info": 20,
+        "quality_issue": 20,
+        "return_refund": 19,
+        "logistics": 20,
+        "complaint": 10,
+        "manual_transfer": 10,
+        "coupon_price": 10,
+        "invoice": 10
+      },
+      "source_distribution": {
+        "llm_user_rewrite": 119
+      },
+      "seed_id_count": 12
+    },
+    "eval_set": {
+      "total": 200,
+      "valid_format": 200,
+      "category_distribution": {
+        "invoice": 24,
+        "logistics": 29,
+        "return_refund": 36,
+        "complaint": 15,
+        "manual_transfer": 19,
+        "product_info": 35,
+        "quality_issue": 32,
+        "coupon_price": 10
+      },
+      "eval_type_distribution": {
+        "safety": 45,
+        "sft": 79,
+        "rag": 50,
+        "human_transfer": 26
+      },
+      "difficulty_distribution": {
+        "hard": 53,
+        "easy": 55,
+        "medium": 92
+      },
+      "need_human_distribution": {
+        "False": 128,
+        "True": 72
+      },
+      "need_rag_distribution": {
+        "False": 143,
+        "True": 57
+      },
+      "risk_tag_distribution": {
+        "invoice_rule": 22,
+        "unsafe_promise": 46,
+        "fake_logistics_status": 8,
+        "return_policy": 42,
+        "logistics": 21,
+        "rag_required": 57,
+        "quality_issue": 4,
+        "complaint_escalation": 14,
+        "human_transfer_required": 72,
+        "complaint": 4,
+        "product_attribute": 28,
+        "coupon_rule": 4,
+        "quality_evidence": 22,
+        "compensation_commitment": 6,
+        "refund_policy": 5,
+        "order_status": 9,
+        "special_category": 1,
+        "manual_transfer_required": 2,
+        "sft": 1,
+        "price_protection": 2,
+        "money_commitment": 3,
+        "manual_transfer": 2,
+        "safety": 1,
+        "return_refund": 1,
+        "product_info": 2,
+        "invoice": 1,
+        "order_privacy": 1
+      }
+    },
+    "dpo_candidates": {
+      "total": 300,
+      "valid_format": 300,
+      "category_distribution": {
+        "product_info": 40,
+        "complaint": 35,
+        "return_refund": 60,
+        "logistics": 45,
+        "invoice": 20,
+        "coupon_price": 25,
+        "manual_transfer": 30,
+        "quality_issue": 45
+      },
+      "source_distribution": {
+        "from_eval": 83,
+        "from_sft": 217
+      },
+      "rejected_type_distribution": {
+        "over_marketing": 20,
+        "no_human_transfer": 35,
+        "fabricated_policy": 45,
+        "fake_order_or_logistics_status": 40,
+        "wrong_intent": 35,
+        "compensation_commitment": 40,
+        "unsafe_overpromise": 20,
+        "missing_action": 35,
+        "rude_tone": 30
+      },
+      "severity_distribution": {
+        "low": 20,
+        "high": 180,
+        "medium": 100
+      }
+    },
+    "dpo_train": {
+      "total": 264,
+      "valid_format": 264,
+      "category_distribution": {
+        "invoice": 15,
+        "quality_issue": 39,
+        "return_refund": 55,
+        "logistics": 39,
+        "coupon_price": 23,
+        "product_info": 35,
+        "manual_transfer": 27,
+        "complaint": 31
+      },
+      "source_distribution": {
+        "from_sft": 194,
+        "from_eval": 70
+      },
+      "rejected_type_distribution": {
+        "missing_action": 30,
+        "rude_tone": 26,
+        "fabricated_policy": 40,
+        "fake_order_or_logistics_status": 36,
+        "compensation_commitment": 36,
+        "no_human_transfer": 31,
+        "wrong_intent": 30,
+        "over_marketing": 18,
+        "unsafe_overpromise": 17
+      },
+      "severity_distribution": {
+        "medium": 86,
+        "high": 160,
+        "low": 18
+      }
+    },
+    "dpo_valid": {
+      "total": 36,
+      "valid_format": 36,
+      "category_distribution": {
+        "quality_issue": 6,
+        "coupon_price": 2,
+        "complaint": 4,
+        "manual_transfer": 3,
+        "return_refund": 5,
+        "logistics": 6,
+        "product_info": 5,
+        "invoice": 5
+      },
+      "source_distribution": {
+        "from_sft": 23,
+        "from_eval": 13
+      },
+      "rejected_type_distribution": {
+        "missing_action": 5,
+        "compensation_commitment": 4,
+        "fake_order_or_logistics_status": 4,
+        "rude_tone": 4,
+        "wrong_intent": 5,
+        "no_human_transfer": 4,
+        "fabricated_policy": 5,
+        "unsafe_overpromise": 3,
+        "over_marketing": 2
+      },
+      "severity_distribution": {
+        "medium": 14,
+        "high": 20,
+        "low": 2
+      }
+    },
+    "kb_all": {
+      "total": 89,
+      "valid_format": 89,
+      "doc_type_distribution": {
+        "faq": 46,
+        "sop": 23,
+        "product": 20
+      },
+      "category_distribution": {
+        "return_refund": 13,
+        "logistics": 9,
+        "product_info": 28,
+        "quality_issue": 10,
+        "invoice": 7,
+        "coupon_price": 7,
+        "complaint": 8,
+        "manual_transfer": 7
+      },
+      "unique_doc_ids": 89
+    }
+  },
+  "cross_checks": {
+    "sft_seed_leakage": {
+      "train_seed_ids": 88,
+      "valid_seed_ids": 12,
+      "leakage_count": 0,
+      "leakage_examples": []
+    },
+    "eval_vs_sft_overlap": {
+      "exact_overlap": 0,
+      "near_overlap": 1,
+      "examples": [
+        {
+          "eval_id": "eval_000096",
+          "query": "优惠券为什么不能用？",
+          "overlap_type": "near",
+          "sft_dataset": "sft_valid",
+          "sft_user": "优惠券为什么不能用了？"
+        }
+      ]
+    }
+  },
+  "issue_summary": {
+    "total": 3,
+    "by_severity": {
+      "warning": 1,
+      "error": 2
+    },
+    "by_dataset": {
+      "cross_dataset": 1,
+      "sft_train": 1,
+      "sft_valid": 1
+    },
+    "by_type": {
+      "eval_sft_near_overlap": 1,
+      "below_minimum_count": 2
+    }
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "dataset": "cross_dataset",
+      "issue_type": "eval_sft_near_overlap",
+      "message": "1 eval queries are near-duplicates of SFT user texts",
+      "extra": {
+        "examples": [
+          {
+            "eval_id": "eval_000096",
+            "query": "优惠券为什么不能用？",
+            "overlap_type": "near",
+            "sft_dataset": "sft_valid",
+            "sft_user": "优惠券为什么不能用了？"
+          }
+        ]
+      }
+    },
+    {
+      "severity": "error",
+      "dataset": "sft_train",
+      "issue_type": "below_minimum_count",
+      "message": "sft_train_min: actual=879, expected_min=1800"
+    },
+    {
+      "severity": "error",
+      "dataset": "sft_valid",
+      "issue_type": "below_minimum_count",
+      "message": "sft_valid_min: actual=119, expected_min=200"
+    }
+  ]
+}

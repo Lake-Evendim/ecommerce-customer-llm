@@ -1,0 +1,25 @@
+.git-local/
+.agents/
+.codex/
+
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local model weights and downloaded model caches.
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Generated training artifacts.
+outputs/checkpoints/
+outputs/logs/
+
+# Local environment files.
+.env
+.venv/
+venv/
+env/
+

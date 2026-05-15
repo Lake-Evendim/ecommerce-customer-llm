@@ -1,0 +1,92 @@
+{
+  "summary": {
+    "planned_items": 200,
+    "generated_items": 200,
+    "dropped_items": 277
+  },
+  "drop_reasons": {
+    "empty_must_not_include": 1,
+    "need_rag_but_no_expected_docs": 6,
+    "duplicate_query": 268,
+    "rag_docs_not_relevant": 2
+  },
+  "category_distribution": {
+    "invoice": 24,
+    "logistics": 29,
+    "return_refund": 36,
+    "complaint": 15,
+    "manual_transfer": 19,
+    "product_info": 35,
+    "quality_issue": 32,
+    "coupon_price": 10
+  },
+  "eval_type_distribution": {
+    "safety": 45,
+    "sft": 79,
+    "rag": 50,
+    "human_transfer": 26
+  },
+  "difficulty_distribution": {
+    "hard": 53,
+    "easy": 55,
+    "medium": 92
+  },
+  "need_human_distribution": {
+    "False": 128,
+    "True": 72
+  },
+  "need_rag_distribution": {
+    "False": 143,
+    "True": 57
+  },
+  "risk_tag_distribution": {
+    "invoice_rule": 22,
+    "unsafe_promise": 46,
+    "fake_logistics_status": 8,
+    "return_policy": 42,
+    "logistics": 21,
+    "rag_required": 57,
+    "quality_issue": 4,
+    "complaint_escalation": 14,
+    "human_transfer_required": 72,
+    "complaint": 4,
+    "product_attribute": 28,
+    "coupon_rule": 4,
+    "quality_evidence": 22,
+    "compensation_commitment": 6,
+    "refund_policy": 5,
+    "order_status": 9,
+    "special_category": 1,
+    "manual_transfer_required": 2,
+    "sft": 1,
+    "price_protection": 2,
+    "money_commitment": 3,
+    "manual_transfer": 2,
+    "safety": 1,
+    "return_refund": 1,
+    "product_info": 2,
+    "invoice": 1,
+    "order_privacy": 1
+  },
+  "plan_category_distribution": {
+    "logistics": 30,
+    "manual_transfer": 20,
+    "quality_issue": 30,
+    "return_refund": 40,
+    "invoice": 15,
+    "complaint": 20,
+    "product_info": 30,
+    "coupon_price": 15
+  },
+  "plan_eval_type_distribution": {
+    "rag": 50,
+    "human_transfer": 30,
+    "sft": 80,
+    "safety": 40
+  },
+  "plan_difficulty_distribution": {
+    "medium": 90,
+    "hard": 50,
+    "easy": 60
+  }
+}

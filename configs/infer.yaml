@@ -1,0 +1,32 @@
+# Base / Base+RAG 推理配置
+# 当前阶段先用 Base 模型跑生成闭环，后续 SFT / DPO 只需要替换 model_name_or_path 或 adapter_path。
+
+model:
+  model_name_or_path: /home/amlab/桌面/shenzy/ecommerce-customer-llm/models/Qwen2.5-3B-Instruct
+  adapter_path: null
+  trust_remote_code: true
+  torch_dtype: auto
+  device_map: auto
+
+generation:
+  max_new_tokens: 512
+  temperature: 0.3
+  top_p: 0.9
+  repetition_penalty: 1.05
+  do_sample: true
+
+paths:
+  eval_path: data/eval/eval_set.jsonl
+  outputs_dir: outputs/eval_results
+  badcases_dir: outputs/badcases
+
+rag:
+  enabled: true
+  top_k: 5
+  score_threshold: 0.35
+  # 这里复用你前面 RAG 阶段的配置文件
+  rag_config_path: configs/rag.yaml
+
+risk:
+  enable_pre_check: true
+  enable_post_check: true

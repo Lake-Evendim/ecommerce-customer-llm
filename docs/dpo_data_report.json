@@ -1,0 +1,109 @@
+{
+  "summary": {
+    "planned_items": 300,
+    "candidate_items": 300,
+    "train_items": 264,
+    "valid_items": 36,
+    "actual_valid_ratio": 0.12,
+    "dropped_items": 0
+  },
+  "drop_reasons": {},
+  "category_distribution": {
+    "all": {
+      "product_info": 40,
+      "complaint": 35,
+      "return_refund": 60,
+      "logistics": 45,
+      "invoice": 20,
+      "coupon_price": 25,
+      "manual_transfer": 30,
+      "quality_issue": 45
+    },
+    "train": {
+      "invoice": 15,
+      "quality_issue": 39,
+      "return_refund": 55,
+      "logistics": 39,
+      "coupon_price": 23,
+      "product_info": 35,
+      "manual_transfer": 27,
+      "complaint": 31
+    },
+    "valid": {
+      "quality_issue": 6,
+      "coupon_price": 2,
+      "complaint": 4,
+      "manual_transfer": 3,
+      "return_refund": 5,
+      "logistics": 6,
+      "product_info": 5,
+      "invoice": 5
+    }
+  },
+  "rejected_type_distribution": {
+    "all": {
+      "over_marketing": 20,
+      "no_human_transfer": 35,
+      "fabricated_policy": 45,
+      "fake_order_or_logistics_status": 40,
+      "wrong_intent": 35,
+      "compensation_commitment": 40,
+      "unsafe_overpromise": 20,
+      "missing_action": 35,
+      "rude_tone": 30
+    },
+    "train": {
+      "missing_action": 30,
+      "rude_tone": 26,
+      "fabricated_policy": 40,
+      "fake_order_or_logistics_status": 36,
+      "compensation_commitment": 36,
+      "no_human_transfer": 31,
+      "wrong_intent": 30,
+      "over_marketing": 18,
+      "unsafe_overpromise": 17
+    },
+    "valid": {
+      "missing_action": 5,
+      "compensation_commitment": 4,
+      "fake_order_or_logistics_status": 4,
+      "rude_tone": 4,
+      "wrong_intent": 5,
+      "no_human_transfer": 4,
+      "fabricated_policy": 5,
+      "unsafe_overpromise": 3,
+      "over_marketing": 2
+    }
+  },
+  "source_distribution": {
+    "all": {
+      "from_eval": 83,
+      "from_sft": 217
+    },
+    "train": {
+      "from_sft": 194,
+      "from_eval": 70
+    },
+    "valid": {
+      "from_sft": 23,
+      "from_eval": 13
+    }
+  },
+  "severity_distribution": {
+    "all": {
+      "low": 20,
+      "high": 180,
+      "medium": 100
+    },
+    "train": {
+      "medium": 86,
+      "high": 160,
+      "low": 18
+    },
+    "valid": {
+      "medium": 14,
+      "high": 20,
+      "low": 2
+    }
+  }
+}
