@@ -11,8 +11,7 @@ paths:
   retrieval_badcase_output: outputs/badcases/rag_retrieval_badcases.jsonl
 
 embedding:
-  # 中文项目推荐先用 bge-small-zh-v1.5，资源占用低，适合先跑通
-  model_name_or_path: BAAI/bge-small-zh-v1.5
+  model_name_or_path: /home/amlab/桌面/shenzy/ecommerce-customer-llm/models/bge-small-zh-v1.5
   device: auto
   batch_size: 32
   normalize_embeddings: true

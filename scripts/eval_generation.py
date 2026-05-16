@@ -86,7 +86,11 @@ def dump_badcases(path: Path, rows: List[Dict[str, Any]], model_type: str):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="configs/infer.yaml")
-    parser.add_argument("--model_type", choices=["base", "base_rag"], required=True)
+    parser.add_argument(
+        "--model_type",
+        choices=["base", "base_rag", "sft", "sft_rag"],
+        required=True,
+        )
     parser.add_argument("--limit", type=int, default=None, help="调试时可只跑前 N 条")
     parser.add_argument("--safe_mode", action="store_true", help="启用风控兜底输出")
     args = parser.parse_args()
@@ -107,7 +111,9 @@ def main():
 
     retriever = None
     rag_cfg = cfg.get("rag", {})
-    if args.model_type == "base_rag":
+    use_rag = args.model_type in {"base_rag", "sft_rag"}
+
+    if use_rag:
         retriever = load_existing_retriever(rag_cfg.get("rag_config_path", "configs/rag.yaml"))
 
     rows = []
@@ -121,7 +127,7 @@ def main():
         retrieved_docs = []
         retrieval_status = None
 
-        if args.model_type == "base":
+        if not use_rag:
             if args.safe_mode and pre["need_human"]:
                 answer = make_safe_fallback(query, pre["risk_flags"])
             else:
