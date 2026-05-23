@@ -4,7 +4,7 @@ from peft import PeftModel
 
 
 BASE_MODEL = "models/Qwen2.5-3B-Instruct"
-LORA_PATH = "outputs/checkpoints/sft_lora"
+LORA_PATH = "outputs/checkpoints/dpo_lora"
 
 
 SYSTEM_PROMPT = (

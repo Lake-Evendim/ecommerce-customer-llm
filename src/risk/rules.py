@@ -168,3 +168,66 @@ def make_safe_fallback(query: str, reason_flags: Optional[List[str]] = None) -> 
         "理解您的问题。为了避免给出不准确的信息，建议您联系人工客服进一步核实，"
         "客服会根据订单和售后规则协助处理。"
     )
+
+def risk_control(
+    query: str,
+    answer: str,
+    retrieved_docs: Optional[List[Dict[str, Any]]] = None,
+    score_threshold: float = 0.35,
+    fallback_on_high_risk: bool = False,
+) -> Dict[str, Any]:
+    """
+    统一风控入口：
+    1. 检查用户输入风险
+    2. 检查 RAG 检索可靠性
+    3. 检查模型输出风险
+    4. 决定是否需要人工介入
+    5. 必要时生成安全兜底回复
+
+    fallback_on_high_risk:
+    - False：默认不直接覆盖模型回答，只返回风险信息
+    - True：如果命中高风险或检索不可靠，则使用 make_safe_fallback 覆盖回答
+    """
+    retrieved_docs = retrieved_docs or []
+
+    pre_result = pre_check_user_query(query)
+    retrieval_result = retrieval_check(
+        retrieved_docs=retrieved_docs,
+        score_threshold=score_threshold,
+    )
+    post_result = post_check_answer(answer)
+
+    all_flags = []
+    all_flags.extend(pre_result.get("risk_flags", []))
+    all_flags.extend(retrieval_result.get("risk_flags", []))
+    all_flags.extend(post_result.get("risk_flags", []))
+
+    # 去重但保持顺序
+    dedup_flags = []
+    for flag in all_flags:
+        if flag not in dedup_flags:
+            dedup_flags.append(flag)
+
+    need_human = (
+        pre_result.get("need_human", False)
+        or post_result.get("has_risk", False)
+        or not retrieval_result.get("retrieval_reliable", True)
+    )
+
+    risk_level = "high" if need_human else "low"
+
+    final_answer = answer
+
+    if fallback_on_high_risk and need_human:
+        final_answer = make_safe_fallback(query, dedup_flags)
+
+    return {
+        "final_answer": final_answer,
+        "original_answer": answer,
+        "need_human": need_human,
+        "risk_level": risk_level,
+        "risk_flags": dedup_flags,
+        "pre_check": pre_result,
+        "retrieval_check": retrieval_result,
+        "post_check": post_result,
+    }

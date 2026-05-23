@@ -90,7 +90,7 @@ def main():
         "--model_type",
         choices=["base", "base_rag", "sft", "sft_rag", "dpo", "dpo_rag"],
         required=True,
-        )
+    )
     parser.add_argument("--limit", type=int, default=None, help="调试时可只跑前 N 条")
     parser.add_argument("--safe_mode", action="store_true", help="启用风控兜底输出")
     args = parser.parse_args()

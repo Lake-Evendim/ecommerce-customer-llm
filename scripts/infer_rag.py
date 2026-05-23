@@ -88,7 +88,17 @@ def main():
     parser.add_argument("--config", default="configs/infer.yaml")
     parser.add_argument("--query", required=True)
     parser.add_argument("--top_k", type=int, default=None)
-    parser.add_argument("--safe_mode", action="store_true", help="命中高风险或低可信检索时直接输出兜底回答")
+    parser.add_argument(
+        "--model_type",
+        default="dpo_rag",
+        choices=["base_rag", "sft_rag", "dpo_rag"],
+        help="用于标识当前推理模型类型，不影响模型加载，模型实际由 config 决定。",
+    )
+    parser.add_argument(
+        "--safe_mode",
+        action="store_true",
+        help="命中高风险或低可信检索时直接输出兜底回答",
+    )
     args = parser.parse_args()
 
     cfg = load_yaml(args.config)
@@ -111,7 +121,7 @@ def main():
 
     if args.safe_mode and (pre["need_human"] or not retrieval_status["retrieval_reliable"]):
         result = {
-            "model_type": "base_rag",
+            "model_type": args.model_type,
             "query": args.query,
             "answer": make_safe_fallback(args.query, fallback_flags),
             "retrieved_docs": retrieved_docs,
@@ -137,7 +147,7 @@ def main():
     }
 
     result = {
-        "model_type": "base_rag",
+        "model_type": args.model_type,
         "query": args.query,
         "answer": answer,
         "retrieved_docs": retrieved_docs,
