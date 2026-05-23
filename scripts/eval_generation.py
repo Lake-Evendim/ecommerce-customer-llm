@@ -88,7 +88,7 @@ def main():
     parser.add_argument("--config", default="configs/infer.yaml")
     parser.add_argument(
         "--model_type",
-        choices=["base", "base_rag", "sft", "sft_rag"],
+        choices=["base", "base_rag", "sft", "sft_rag", "dpo", "dpo_rag"],
         required=True,
         )
     parser.add_argument("--limit", type=int, default=None, help="调试时可只跑前 N 条")
@@ -111,7 +111,7 @@ def main():
 
     retriever = None
     rag_cfg = cfg.get("rag", {})
-    use_rag = args.model_type in {"base_rag", "sft_rag"}
+    use_rag = args.model_type in {"base_rag", "sft_rag", "dpo_rag"}
 
     if use_rag:
         retriever = load_existing_retriever(rag_cfg.get("rag_config_path", "configs/rag.yaml"))

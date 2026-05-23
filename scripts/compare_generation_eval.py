@@ -10,6 +10,8 @@ EVAL_FILES = {
     "base_rag": "outputs/eval_results/base_rag_generation_eval.jsonl",
     "sft": "outputs/eval_results/sft_generation_eval.jsonl",
     "sft_rag": "outputs/eval_results/sft_rag_generation_eval.jsonl",
+    "dpo": "outputs/eval_results/dpo_generation_eval.jsonl",
+    "dpo_rag": "outputs/eval_results/dpo_rag_generation_eval.jsonl",
 }
 
 
